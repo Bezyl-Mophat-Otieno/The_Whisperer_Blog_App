@@ -1,0 +1,13 @@
+.btnLogin{
+    box-sizing: border-box;
+    width:auto;
+    height: 40px;
+    color: #be9656;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    justify-content: center;
+      }
+      .btnLogin:hover{
+        color: #be9656;
+    
+      }
