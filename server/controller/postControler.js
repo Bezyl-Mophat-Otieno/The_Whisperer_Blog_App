@@ -80,19 +80,29 @@ const getPost = asyncHandler(async(req,res)=>{
 // /api/post/?username='kalasinga'
 // /api/post/?category='music'
 
+//TODO Ensure the approved posts are fetched from the database.
  const getAllPosts = asyncHandler(async(req,res)=>{
-  const username = req.query.username
+  const username = req.query.user
   const catName = req.query.category
-  
+  console.log(username)
   let posts;
-  if(username){
-    posts = await Post.find({username , status:"approved"})
-  } else if(catName){
-    posts = await Post.find({category,status:"approved"})
-  } else{
-     posts = await Post.find()
-    }
-    res.status(200).json(posts)
+try {
+    if(username){
+      posts = await Post.find({username })
+      console.log(posts)
+    } else if(catName){
+      posts = await Post.find({category:catName})
+    } else{
+       posts = await Post.find()
+       console.log(posts)
+      }
+      res.status(200).json(posts)
+    
+} catch (error) {
+    res.status(500).json(error.message)
+    
+}
+
   
  })
  //APPROVE POSTS
